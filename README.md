@@ -1,5 +1,8 @@
 # epicmax
 
+#Link to the site deployed on Netlify:
+https://epicmaxprivate.netlify.app/#/
+
 ## Project setup
 ```
 npm install
