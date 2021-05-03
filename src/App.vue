@@ -14,6 +14,7 @@
 }
 
 body {
+  min-width: 200px;
   width: 100%;
   height: 100vh;
   background-image: linear-gradient(135deg,#c31d92,#ffffff 53%,#222eff);

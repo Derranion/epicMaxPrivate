@@ -11,25 +11,16 @@
         <span>Issues</span>
         <span>Watchers</span>
     </h3> -->
-    <ul>
-      <!-- name: "grit"
-
-owner.html_url: 'https://git...owner'
-
-owner.login 'momojombo'
-
-forks_url: "https://api.github.com/repos/mojombo/grit/forks"
-
-issues_url: "https://api.github.com/repos/mojombo/grit/issues
-
-watchers https://api.github.com/repos/octocat/hello-world/subscribers
-
-https://api.github.com/repos/mojombo/grit/subscribers -->
-      <RepoItem v-for='(repo,i) of repos'
-                v-bind:key="i"
-                v-bind:repo='repo'
-      />
-    </ul>
+    <div class='repository'>
+      <button @click='renderPrev()'>Prev</button>
+      <button @click='renderNext()'>Next</button>
+      <ul>
+        <RepoItem v-for='(repo,i) of repos'
+                  v-bind:key="i"
+                  v-bind:repo='repo'
+        />
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -46,31 +37,50 @@ export default {
   },
   data() {
     return {
-      repos: []
+      repos: [],
+      currentPage: 1
     }
   },
   created(){
-    fetch('https://api.github.com/repositories')
-      .then(res=>res.json())
-      .then(res=>{
-        // iterate through all objects from the response
-        res.forEach(rep=>{
-          console.log(res)
-          this.repos.push({
-            name: rep.name,
-            link: rep.owner.html_url,
-            owner: rep.owner.login,
-            forks: rep.forks_url,
-            issues: rep.issues_url,
-            watchers:5
-          })
-        })
-      })
+    //https://api.github.com/repositories
+    this.fetchPage(this.currentPage)
     // get repos from github using fetch
   },
   methods: {
     scrolled(){
       console.log('scrolled')
+    },
+    generateReq(page, perPage=10){
+      return `https://api.github.com/search/repositories?q=language:js&per_page=${perPage}&page=${page}&sort=stars&sort=desc`
+    },
+    renderNext(){
+      ++this.currentPage;
+      this.fetchPage(this.currentPage)
+    },
+    renderPrev(){
+      if(this.currentPage>1){
+        --this.currentPage;
+        this.fetchPage(this.currentPage)
+      }
+    },
+    fetchPage(page){
+      fetch(this.generateReq(page))
+      .then(res=>res.json())
+      .then(res=>{
+        // iterate through all objects from the response
+        this.repos=[];
+        res.items.forEach(rep=>{
+          console.log(res)
+          this.repos.push({
+              name: rep.name,
+              link: rep.html_url,
+              owner: rep.owner.login,
+              forks: rep.forks_url,
+              issues: rep.issues_url,
+              watchers: rep.watchers_count
+            })
+        })
+      })
     }
   }
 }
@@ -78,13 +88,17 @@ export default {
 
 <style scoped>
 ul {
-  display: flex;
+  border: 2px solid purple;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   flex-direction: column;
   list-style-type: none;
-  padding: 0;
+  padding: 10px;
   max-width: 100%;
+  height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 h1 {
   margin: 10px;
