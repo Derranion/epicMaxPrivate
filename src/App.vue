@@ -9,6 +9,16 @@
 </template>
 
 <style>
+* {
+  margin: 0px;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(135deg,#c31d92,#ffffff 53%,#222eff);
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -18,7 +28,7 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 20px;
 }
 
 #nav a {
@@ -27,6 +37,6 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ff34ff;
 }
 </style>
