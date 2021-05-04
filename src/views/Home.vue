@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <ReposList msg="EpicMax Jedi you are welcome!"/>
+    <img alt="EpicMax logo" src="../assets/logo.png">
+    <h1>EpicMax Jedi you are welcome!</h1>
+    <ReposList msg=""/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import ReposList from '@/components/ReposList.vue'
 
 export default {
@@ -16,3 +16,10 @@ export default {
   }
 }
 </script>
+
+<style>
+h1 {
+  margin: 10px;
+  color: white;
+}
+</style>

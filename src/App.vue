@@ -17,7 +17,8 @@ body {
   min-width: 200px;
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(135deg,#c31d92,#ffffff 53%,#222eff);
+   background-image: linear-gradient(121deg,#aa2883,#5e56a3 53%,#20257e);
+  /* background-image: linear-gradient(135deg,#c31d92,#ffffff 53%,#222eff); */
 }
 
 #app {

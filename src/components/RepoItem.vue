@@ -1,18 +1,15 @@
 <template>
     <li class='repo'>
         <div class='name'>{{repo.name}}</div>
-        <div class='link'><a :href="repo.link">Link</a></div>
-        <div class='owner'>{{repo.owner}}</div>
-        <div class='forks'><a :href="repo.forks">Forks</a></div>
-        <div class='issues'><a :href="repo.issues">Issues</a></div>
-        <div class='watchers'>{{repo.watchers}}</div>
+        <div class='link'><a :href="repo.link" target="_blank">Link</a></div>
+        <div class='owner'>ID: {{repo.owner}}</div>
+        <div class='forks'><a :href="repo.forks" target="_blank">Forks</a></div>
+        <div class='issues'><a :href="repo.issues" target="_blank">Issues</a></div>
+        <div class='watchers'>Watchers: {{repo.watchers}}</div>
     </li>
 </template>
 
 <script>
-// split link by / and return last one "mojombo"
-// issues split by api.github.com/repos/mojombo/grit/issues{/number}
-
 export default {
     props: {
         repo: Object
@@ -49,9 +46,6 @@ div {
 }
 div.name {
     background-color: rgb(255, 88, 255);
-}
-div.name:hover {
-
 }
 div.link {
     background-color: rgb(255, 148, 250);
