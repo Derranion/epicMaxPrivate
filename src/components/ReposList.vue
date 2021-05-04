@@ -1,6 +1,6 @@
 <template>
   <div class="reposList">
-    <h2>Here is the list of most popular Git repositories:</h2>
+    <h2>Here is the list of the most popular Git repositories:</h2>
    
     <div v-if='!loading' class='repository'>
       <button :disabled='currentPage<2' 
@@ -55,6 +55,9 @@ export default {
         this.fetchPage(this.currentPage)
       }
     },
+    capitalizeFirst(inp){
+            return inp[0].toUpperCase()+inp.slice(1)
+    },
     fetchPage(page){
       this.loading=true;
       fetch(this.generateReq(page))
@@ -63,10 +66,10 @@ export default {
         this.repos=[];
         (res.items||[]).forEach(rep=>{
           this.repos.push({
-              name: rep.name,
+              name: this.capitalizeFirst(rep.name),
               link: rep.html_url,
-              owner: rep.owner.login,
-              forks: rep.html_url+'/network/members', //rep.forks_url
+              owner: this.capitalizeFirst(rep.owner.login),
+              forks: rep.html_url+'/network/members',
               issues: rep.html_url+'/issues',
               watchers: rep.watchers_count
             })

@@ -13,16 +13,6 @@
 export default {
     props: {
         repo: Object
-    },
-    methods: {
-        capitalizeFirst(inp){
-            return inp[0].toUpperCase()+inp.slice(1)
-        }
-    },
-    beforeMount: function(){
-        this.repo.name = this.capitalizeFirst(this.repo.name);
-        this.repo.owner = this.capitalizeFirst(this.repo.owner);
-        this.repo.issues = this.repo.issues.split('{')[0];
     }
 }
 </script>
