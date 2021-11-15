@@ -1,5 +1,6 @@
 # epicmax
-#Link to the site deployed on Netlify
+
+#Link to the site deployed on Netlify:
 https://epicmaxprivate.netlify.app/#/
 
 
