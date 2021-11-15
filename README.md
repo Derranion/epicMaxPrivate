@@ -1,7 +1,6 @@
 # epicmax
-
-#Link to the site deployed on Netlify:
 https://epicmaxprivate.netlify.app/#/
+#Link to the site deployed on Netlify
 
 ## Project setup
 ```
